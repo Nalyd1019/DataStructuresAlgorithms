@@ -1,0 +1,138 @@
+
+/******************************************************************************
+** DAT038, TDA417  Datastrukturer och algoritmer, LP2 2020
+** Lab 1: Sorting, Complexity
+*******************************************************************************/
+
+Name of lab group: [44]
+Group member A:    [Lisa Samuelsson]
+Group member B:    [Dylan Osolian]
+Group member C:    [Samuel Dahlberg]
+
+/******************************************************************************
+** Task: Figuring out the complexity
+**
+** 1. What is the complexity of running each of the following algorithms
+**    on each of the following inputs?
+******************************************************************************/
+
+Insertion.java on:
+
+- random inputs:      [n^2]
+- 95% sorted inputs:  [n^2]
+- sorted inputs:      [n / n log n]
+
+Quick.java on:
+
+- random inputs:      [n / n log n]
+- 95% sorted inputs:  [n / n log n]
+- sorted inputs:      [n^2]
+
+Merge.java on:
+
+- random inputs:      [n / n log n]
+- 95% sorted inputs:  [n / n log n]
+- sorted inputs:      [n / n log n]
+
+Arrays.sort on:
+
+- random inputs:      [n / n log n]
+- 95% sorted inputs:  [n / n log n]
+- sorted inputs:      [n / n log n]
+
+
+
+
+
+/******************************************************************************
+** Task: Improving quicksort
+**
+** 2. Do the following changes affect the complexity of quicksort
+**    on any kind of input data? If so, what is it that changes?
+******************************************************************************/
+
+Shuffling the array first:
+
+Sorted: Yes, it works on sorted arrays. This is because it lowers the chances that the pivot will be the largest or smallest element in the array.
+If you take the first element in a sorted array to be the pivot, the algorithm will always perform its worst,
+as the next array to be sorted will be containing all elements except 1, ie (n-1).
+Then it will be the same thing, n-2, and so on, giving the result of n^2. When shuffled, the complexity changes to [n / n log n].
+
+Unsorted: This array is already “shuffled”, the numbers are in a random order.
+Because of this, shuffling the array doesn’t make much of a difference. The complexity is not changed.
+
+95% sorted: The performance is better, but the time complexity is the same.
+
+Median-of-three pivot selection:
+Sorted: Yes, the median of three works on sorted arrays, as it will select a better pivot.
+For every partition the median of three is going to be the element in the middle. This removes the worst case scenario.
+The time complexity is no longer quadratic, but (n / n log n).
+
+Unsorted: The pivot is still random, the complexity doesn’t change.
+
+95% sorted: The time complexity doesn’t change.
+
+Insertion sort for small arrays:
+No, using insertion sort when the array gets small makes it faster but doesn’t change the complexity.
+
+/******************************************************************************
+** 3. What is a good cutoff to use for insertion sort?
+**    Explain briefly how you came to this answer.
+**    Remember that you should try to find the answer in a systematic way.
+******************************************************************************/
+We started by looking at the timing data, to see when insertion sort was faster than quick sort.
+We found that this happened at around size 30 but quick sort was starting to performing slightly better around size 100.
+After running tests and comparing performance with different values, we found that an array size of 80 was a good cutoff.
+
+
+/******************************************************************************
+** 4. Which combination of improvements gives the best performance?
+******************************************************************************/
+The best performance is achieved by combining Insertion for small arrays and Median of Three.
+Since we’re using the median of three method to find the pivot element the pivot element for the sorted array will always
+be the optimal element and almost always for the 95% sorted array so shuffling these arrays beforehand would decrease the average sorting performance.
+Shuffling the already shuffled array is unnecessary and only adds more steps to the algorithm.
+
+/******************************************************************************
+** Appendix: General information
+**
+** A. Approximately how many hours did you spend on the assignment?
+******************************************************************************/
+
+[Lisa Samuelsson]:  [3,5]
+[Dylan Osolian]:  [2]
+[Samuel Dahlberg]:  [3.5]
+
+
+/******************************************************************************
+** B. Are there any known bugs / limitations?
+******************************************************************************/
+No, there are no known bugs or limitiations.
+
+
+/******************************************************************************
+** C. Did you collaborate with any other students on this lab?
+**    If so, please write in what way you collaborated and with whom.
+**    Also include any resources (including the web) that you may
+**    may have used in creating your design.
+******************************************************************************/
+
+No, we did not collaborate with any students outside of our group.
+
+Two youtube videos about Quicksort:
+https://www.youtube.com/watch?v=7h1s2SojIRw
+https://www.youtube.com/watch?v=uXBnyYuwPe8
+
+
+/******************************************************************************
+** D. Describe any serious problems you encountered.
+******************************************************************************/
+We have not encountered any serious problems during this lab.
+
+/******************************************************************************
+** E. List any other comments here.
+**    Feel free to provide any feedback on how much you learned
+**    from doing the assignment, and whether you enjoyed it.
+******************************************************************************/
+
+
