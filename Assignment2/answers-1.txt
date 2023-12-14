@@ -1,0 +1,133 @@
+
+/******************************************************************************
+** DAT038, TDA417  Datastrukturer och algoritmer, LP2 2020
+** Lab 2: Autocomplete
+*******************************************************************************/
+
+Name of lab group: [44]
+Group member A:    [Dylan Osolian]
+Group member B:    [Lisa Samuelsson]
+Group member C:    [Samuel Dahlberg]
+
+
+/******************************************************************************
+** 1. Describe how your firstIndexOf() method in RangeBinarySearch.java
+**    finds the first index of a key that equals the search key.
+******************************************************************************/
+
+The method is a standard binary search method except that when we find a matching element we keep looking to the left of it to see if there is another matching element at a lower index.
+
+A more in-depth explanation of the method is as following:
+
+We want to find the first index of a key that equals the search key.
+
+Term[] terms is the dictionary. It must be sorted, or else binary search won't work.
+
+Term key is what has been inserted by the user, the search key. The comparator enables comparing the search key
+with the terms in the dictionary.
+
+We need to understand how the comparator works. It compares two objects (x, y), and returns:
+0 if x==y,
+-1 if x < y, and
+1 if x > y.
+
+The first if-statement checks if the element in the middle is the same as the search key (compare returns 0). If it is, then we save this as our
+index. If this turns out to be the only matching one, then it will be returned. However, we want to know the first index, and if it exists it could only be to the
+left, so we keep looking. This is why we set max to mid-1, we look at the left side.
+
+Then we repeat this again. If we find the element in the middle, we do not know if there are even more matches to the left,
+so we must keep looking at the left side.
+
+But, what happens if the element in the middle of the array is not matching? What we do is to look at the result of our comparison
+of the key and the dictionary. If it is larger than 0, it means that the key is before than the word in the middle of the
+dictionary, meaning it is on the left side.
+
+So, we know we have to look in the left half of the dictionary, which is why we set high to one below the previous mid.
+
+The same goes for if the result is smaller than one - then we know that the key is after the word in the middle of the array, and
+instead we should look in the right part of the array. That is why we must set min to 1 higher than mid was.
+
+When this loop has stopped, we have reached the goal of finding the lowest index where the search key matches the key in the dictionary. If the key is not found -1 is returned.
+
+
+
+/******************************************************************************
+** 2. What is the worst case time complexity in the number of compares
+**    that each of the operations in the Autocomplete data type make,
+**    as a function of the number of terms n and the number of matching terms m?
+******************************************************************************/
+
+sortDictionary():  [N log N]
+
+[ The time complexity of javas sort function is n log n. ]
+
+
+allMatches():  [O(M log M + log N]
+
+[
+
+N - numbers of elements in dictionary
+M - numbers of matching elements
+
+First we do a binary search. This has complexity O(log N).
+
+The matching terms are put in an array, and to put them in an array we go through the matching results in the dictionary, from the lowest to the highest index. This array copying means that the time complexity is depending on the number of matching terms.  The time complexity is linear, M.
+
+We also use java's sort function which has the time complexity O(M log M).
+
+This would mean that the time complexity would be O(log N + M + M log M). However, when M gets big, M log M will dominate and therefore we only need to write O(log N + M log M).
+
+]
+
+numberOfMatches():  [O(log n)]
+
+[ The method uses binary search to calculate the number of matches, and binary search has the time complexity O(log n) ]
+
+
+
+
+/******************************************************************************
+** Appendix: General information
+**
+** A. Approximately how many hours did you spend on the assignment?
+******************************************************************************/
+
+[Dylan Osolian]:  [4]
+[Lisa Samuelsson]:  [4]
+[Samuel Dahlberg]:  [4]
+
+
+/******************************************************************************
+** B. Are there any known bugs / limitations?
+******************************************************************************/
+
+No known bugs
+
+
+/******************************************************************************
+** C. Did you collaborate with any other students on this lab?
+**    If so, please write in what way you collaborated and with whom.
+**    Also include any resources (including the web) that you may
+**    may have used in creating your design.
+******************************************************************************/
+
+We did not collaborate with anyone.
+
+/******************************************************************************
+** D. Describe any serious problems you encountered.                    
+******************************************************************************/
+
+No serious problems were encountered
+
+Video that explains finding first occurence using binary search, in pseudocode.
+https://www.youtube.com/watch?v=OE7wUUpJw6I&ab_channel=mycodeschool
+
+
+/******************************************************************************
+** E. List any other comments here.
+**    Feel free to provide any feedback on how much you learned 
+**    from doing the assignment, and whether you enjoyed it.                                             
+******************************************************************************/
+
+
+
